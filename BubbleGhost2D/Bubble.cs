@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aiv.Fast2D;
-using BehaviourEngine.Renderer;
 using OpenTK;
 using BubbleGhostGame2D;
+using BehaviourEngine;
 
 namespace BubbleGhostGame2D
 {
@@ -21,7 +17,7 @@ namespace BubbleGhostGame2D
         public bool Exploded { get; set; }
 
         private Dictionary < AnimType, AnimationRenderer >      bubbleRenderer;
-        private readonly Box2D                                  collider;
+        private readonly BoxCollider2D                          collider;
         private static readonly int[]                           frames = { 0, 1, 2, 1 };
         private readonly float                                  time;
         private float                                           updateTime;
@@ -33,22 +29,22 @@ namespace BubbleGhostGame2D
         private StateExplode                                    stateExplode;
         private StateWait                                       stateWait;
 
-        public Bubble( string fileNameBubble, string fileNameExplosion, Vector2 position ) : base( ( int )RenderLayer.Pawn, "Bubble" )
+        public Bubble( string fileNameBubble, string fileNameExplosion, Vector2 position ) : base("Bubble") // base( ( int )RenderLayer.Pawn, "Bubble" )
         {
             #region Init
             Exploded         = false;     
             bubbleRenderer   = new Dictionary < AnimType, AnimationRenderer >( );
                              
-            RigidBody r      = this.AddBehaviour < RigidBody >( new RigidBody( this ) );
+            Rigidbody2D r      = this.AddComponent( new Rigidbody2D() );
             r.LinearFriction = 3f;
-            this.AddBehaviour < Blowable >( new Blowable( this ) );
+            this.AddComponent( new Blowable() );
             #endregion
 
             #region Renderer
 
-            bubbleRenderer.Add( AnimType.Normal, AddBehaviour( new AnimationRenderer( this, fileNameBubble, position, false, true, 3, 32, 32, new[ ] { 0, 1, 2, 1 }, 0.2f ) ) );
+            bubbleRenderer.Add( AnimType.Normal, AddComponent( new AnimationRenderer( this, fileNameBubble, position, false, true, 3, 32, 32, new[ ] { 0, 1, 2, 1 }, 0.2f ) ) );
 
-            bubbleRenderer.Add( AnimType.Exploding, AddBehaviour( new AnimationRenderer( this, fileNameExplosion, position, true, false, 3, 32, 32, frames, 0.2f ) ) );
+            bubbleRenderer.Add( AnimType.Exploding, AddComponent( new AnimationRenderer( this, fileNameExplosion, position, true, false, 3, 32, 32, frames, 0.2f ) ) );
 
             foreach (var anims in bubbleRenderer)
             {
@@ -63,8 +59,8 @@ namespace BubbleGhostGame2D
 
             #region Collider
 
-            collider = new Box2D( position, 20f, 20f, new Vector4(255, 0, 255, 255), this );
-            AddBehaviour< Box2D >( collider );
+            collider = new BoxCollider2D( position, 20f, 20f, new Vector4(255, 0, 255, 255), this );
+            AddComponent( collider );
 
             #endregion                         
                                                

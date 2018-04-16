@@ -1,7 +1,7 @@
 ﻿using Aiv.Fast2D;
 using OpenTK;
-using BehaviourEngine.Interfaces;
-using BehaviourEngine.Renderer;
+using BehaviourEngine;
+using Aiv.Fast2D.Utils.Input;
 
 namespace BubbleGhostGame2D
 {
@@ -10,6 +10,7 @@ namespace BubbleGhostGame2D
         private readonly GameObject target;
         private readonly float radius;
         private bool isGhost;
+
         public SwitchAnimation(GameObject owner, GameObject target, float radius, bool isGhost) : base(owner)
         {
             this.isGhost = isGhost;
@@ -19,7 +20,7 @@ namespace BubbleGhostGame2D
 
         public void Update()
         {
-            if ( Engine.GetKey( KeyCode.Space ) )
+            if (Input.IsKeyPressed( KeyCode.Space ) )
             {
                 Owner.GetComponent < AnimationRenderer >( ).currentFrame = 3;
                 Owner.GetComponent < AnimationRenderer >( ).Stop = true;
@@ -36,12 +37,12 @@ namespace BubbleGhostGame2D
 
             if (isGhost)
             {
-                 if (Engine.GetKey(KeyCode.D))
+                 if (Input.IsKeyPressed(KeyCode.D))
                  {
                      Owner.GetComponent<AnimationRenderer>().SetFlip(false, true);
                  }
                  
-                 if (Engine.GetKey(KeyCode.A))
+                 if (Input.IsKeyPressed(KeyCode.A))
                  {
                      Owner.GetComponent<AnimationRenderer>().SetFlip(false, false);
                  }

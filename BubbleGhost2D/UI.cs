@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aiv.Fast2D;
 using OpenTK;
-using BehaviourEngine.Renderer;
+using BehaviourEngine;
 
 namespace BubbleGhostGame2D
 {
@@ -16,16 +16,16 @@ namespace BubbleGhostGame2D
      
         public UI( int RenderOffset, Vector2 drawPosition, int width, int height, string fileName ) : base ( RenderOffset )
         {
-            renderer                          = AddBehaviour<SpriteRenderer>(new SpriteRenderer(this, width, height));
+            renderer                          = AddComponent(new SpriteRenderer(this, width, height));
             renderer.IsTile                   = false;
             renderer.Owner.Transform.Position = drawPosition;
             renderer.Texture                  = FlyWeight.Get(fileName);
         }
 
-        public UI( string message, Texture spriteSheetTexture, Vector2 position ) : base( ( int ) RenderLayer.Pawn )
+        public UI( string message, Texture spriteSheetTexture, Vector2 position )  //: base( ( int ) RenderLayer.Pawn )
         {
             text = new Text(message, spriteSheetTexture, position);
-            Engine.Spawn(text);
+            GameObject.Spawn(text);
         }
     
 
@@ -35,7 +35,7 @@ namespace BubbleGhostGame2D
         private Write text;
         public Text( string message, Texture spriteSheetTexture, Vector2 position ) : base( ( int ) RenderLayer.Pawn )
         {
-            text = AddBehaviour<Write>(new Write(this, spriteSheetTexture,message, position));
+            text = AddComponent(new Write(this, spriteSheetTexture,message, position));
         }
     }
 }

@@ -33,20 +33,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="aiv-fast2d, Version=1.0.6336.29264, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BehaviourEngine\bin\Debug\aiv-fast2d.dll</HintPath>
+    </Reference>
     <Reference Include="aiv-fast2d-utils-input, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\GitHub\BehaviourEngine\bin\Debug\aiv-fast2d-utils-input.dll</HintPath>
+      <HintPath>..\..\BehaviourEngine\bin\Debug\aiv-fast2d-utils-input.dll</HintPath>
+    </Reference>
+    <Reference Include="aiv-fast2d-utils-texturehelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BehaviourEngine\bin\Debug\aiv-fast2d-utils-texturehelper.dll</HintPath>
     </Reference>
     <Reference Include="BehaviourEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Sam\BehaviourEngine.dll</HintPath>
+      <HintPath>..\..\BehaviourEngine\bin\Debug\BehaviourEngine.dll</HintPath>
     </Reference>
     <Reference Include="EngineBuilder">
-      <HintPath>..\..\..\..\Documents\GitHub\BehaviourEngine\bin\Debug\EngineBuilder.dll</HintPath>
+      <HintPath>..\..\BehaviourEngine\bin\Debug\EngineBuilder.dll</HintPath>
     </Reference>
     <Reference Include="NVorbis, Version=0.8.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\GitHub\BehaviourEngine\bin\Debug\NVorbis.dll</HintPath>
+      <HintPath>..\..\BehaviourEngine\bin\Debug\NVorbis.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
@@ -65,11 +73,9 @@
     <Compile Include="Components\Blowable.cs" />
     <Compile Include="Components\Blower.cs" />
     <Compile Include="Components\InputMove.cs" />
-    <Compile Include="Components\LightRadius.cs" />
     <Compile Include="Components\Rotator.cs" />
     <Compile Include="Components\SwitchAnimation.cs" />
     <Compile Include="Bubble.cs" />
-    <Compile Include="Camera.cs" />
     <Compile Include="Candle.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameManager.cs" />
@@ -78,10 +84,8 @@
     <Compile Include="Prefabs\Game.cs" />
     <Compile Include="Ghost.cs" />
     <Compile Include="LevelManager.cs" />
-    <Compile Include="Main\GameManager.cs" />
     <Compile Include="Prefabs\Ghost.cs" />
     <Compile Include="Main\IState.cs" />
-    <Compile Include="Main\Program.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

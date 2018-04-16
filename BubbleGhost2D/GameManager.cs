@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
-using BehaviourEngine.Interfaces;
 using Aiv.Fast2D;
 using Aiv.Fast2D.Utils.Input;
+using BehaviourEngine;
 using vec2 = OpenTK.Vector2;
 
 namespace BubbleGhostGame2D
@@ -41,7 +41,7 @@ namespace BubbleGhostGame2D
         }
         #endregion
 
-        private GameManager(GameObject owner) : base(owner)
+        private GameManager(GameObject owner) 
         {
             userInterface        = new List < UI >( );
                                  
@@ -115,8 +115,8 @@ namespace BubbleGhostGame2D
                 owner.ghost  = new Ghost( "Ghost",4, Map.spawnPointGhost, owner.bubble );
 
                 //Gui spawn
-                Engine.Spawn( owner.userInterface[ 0 ] );
-                Engine.Spawn( owner.userInterface[ 1 ] );
+                GameObject.Spawn( owner.userInterface[ 0 ] );
+                GameObject.Spawn( owner.userInterface[ 1 ] );
 
                 owner.userInterface.Add( new UI( owner.ghost.GetComponent< Lifes >( ).LifesCount.ToString(), FlyWeight.Get( "Font" ), Engine.Half ) );
               
@@ -203,19 +203,19 @@ namespace BubbleGhostGame2D
                 //GameObjects
                 owner.ghost.Transform.Position  = Map.spawnPointGhost;
                 owner.bubble.Transform.Position = Map.spawnPointBubble;
-                Engine.Spawn( owner.bubble ) ;
-                Engine.Spawn( owner.ghost );
-                Engine.Spawn( owner.userInterface[ 0 ] );
-                Engine.Spawn( new Camera( ) );
-                Engine.Spawn(owner.userInterface[2]);
+                GameObject.Spawn( owner.bubble ) ;
+                GameObject.Spawn( owner.ghost );
+                GameObject.Spawn( owner.userInterface[ 0 ] );
+                GameObject.Spawn( new Camera( ) );
+                GameObject.Spawn(owner.userInterface[2]);
 
             }
 
             public void OnStateExit()
             {
-                Engine.Destroy(owner.userInterface[ 0 ] );
-                Engine.Destroy(owner.bubble);
-                Engine.Destroy(owner.ghost);
+                GameObject.Destroy(owner.userInterface[ 0 ] );
+                GameObject.Destroy(owner.bubble);
+                GameObject.Destroy(owner.ghost);
             }
 
             public IState OnStateUpdate()

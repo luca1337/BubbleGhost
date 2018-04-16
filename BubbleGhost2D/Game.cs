@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BubbleGhostGame2D
+namespace BehaviourEngine.Test
 {
-    internal class Game : GameObject
+    public class Game
     {
-        public Game() : base( ( int )RenderLayer.None )
-        {
-            AddBehaviour<GameManager>(GameManager.Instance);
-        }
     }
 }

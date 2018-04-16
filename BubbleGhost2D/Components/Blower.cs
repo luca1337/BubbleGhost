@@ -1,6 +1,8 @@
 ﻿using Aiv.Fast2D;
-using BehaviourEngine.Interfaces;
+using BehaviourEngine;
 using OpenTK;
+using Aiv.Fast2D.Utils.Input;
+
 
 namespace BubbleGhostGame2D
 {
@@ -10,7 +12,7 @@ namespace BubbleGhostGame2D
         private readonly float range;
         public Blowable Target;
 
-        public Blower(GameObject owner, Blowable target, float range, float force = 1f) : base(owner)
+        public Blower(GameObject owner, Blowable target, float range, float force = 1f) 
         {
             Target = target;
             Force = force;
@@ -24,7 +26,7 @@ namespace BubbleGhostGame2D
 
         void IUpdatable.Update()
         {
-            if(Engine.Window.GetKey(KeyCode.Space))
+            if(  Input.IsKeyPressed(KeyCode.Space))
             {
                 Vector2 dist = Target.Owner.Transform.Position - Owner.Transform.Position;
                 if(dist.Length < range)

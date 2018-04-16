@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BehaviourEngine.Interfaces;
-using BehaviourEngine.Renderer;
+using BehaviourEngine;
 using OpenTK;
+using Graphics = BehaviourEngine.Graphics;
 
 namespace BubbleGhostGame2D
 {
@@ -16,7 +16,7 @@ namespace BubbleGhostGame2D
         private float range;
         private float t;
 
-        public Rotator(GameObject owner, GameObject target, float range) : base(owner)
+        public Rotator(GameObject owner, GameObject target, float range)
         {
             this.target = target;
             this.range = range;

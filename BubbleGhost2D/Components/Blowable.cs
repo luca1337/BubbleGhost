@@ -1,18 +1,17 @@
-﻿namespace BubbleGhostGame2D
+﻿using BehaviourEngine;
+using OpenTK;
+
+namespace BubbleGhostGame2D
 {
     class Blowable : Component, IStartable
     {
-        public RigidBody rigidBody;
+        public Rigidbody2D rigidBody;
 
         bool IStartable.IsStarted { get; set; }
 
-        public Blowable( GameObject owner ) : base( owner )
-        {
-        }
-
         void IStartable.Start()
         {
-            rigidBody = Owner?.GetComponent<RigidBody>();
+            rigidBody = Owner?.GetComponent<Rigidbody2D>();
         }
 
         public virtual void Blow(Vector2 pushForce)

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
 using Aiv.Fast2D;
-using BehaviourEngine.Test;
+using BehaviourEngine;
 
 namespace BubbleGhostGame2D
 {
@@ -64,7 +64,7 @@ namespace BubbleGhostGame2D
 
         private void LoadMap()
         {
-            gameObj = Engine.Spawn( new Map( map, rows, columns, index ) );
+            gameObj = GameObject.Spawn( new Map( map, rows, columns, index ) );
         }
 
         public void NextLevel( bool next )
