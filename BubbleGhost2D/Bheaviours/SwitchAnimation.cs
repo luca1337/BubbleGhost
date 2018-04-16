@@ -5,7 +5,7 @@ using BehaviourEngine.Renderer;
 
 namespace BehaviourEngine.Test.Bhaviours
 {
-    public class SwitchAnimation : Behaviour, IUpdatable
+    public class SwitchAnimation : Component, IUpdatable
     {
         private readonly GameObject target;
         private readonly float radius;

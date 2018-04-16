@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BehaviourEngine.Test.Bhaviours
 {
-    class Blowable : Behaviour, IStartable
+    class Blowable : Component, IStartable
     {
         public RigidBody rigidBody;
 

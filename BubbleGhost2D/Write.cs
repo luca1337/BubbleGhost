@@ -10,7 +10,7 @@ using BehaviourEngine.Renderer;
 
 namespace BehaviourEngine.Test
 {
-    public class Write : Behaviour, IUpdatable, IDrawable
+    public class Write : Component, IUpdatable, IDrawable
     {
         private TextMesh text;
         public string message;

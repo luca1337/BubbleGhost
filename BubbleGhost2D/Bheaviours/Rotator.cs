@@ -9,7 +9,7 @@ using OpenTK;
 
 namespace BehaviourEngine.Test.Bhaviours
 {
-    public class Rotator : Behaviour, IUpdatable, IStartable
+    public class Rotator : Component, IUpdatable, IStartable
     {
         private AnimationRenderer renderer;
         private GameObject target;

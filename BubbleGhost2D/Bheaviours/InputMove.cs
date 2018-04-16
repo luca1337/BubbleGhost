@@ -4,7 +4,7 @@ using OpenTK;
 
 namespace BehaviourEngine.Test.Bhaviours
 {
-    class InputMove : Behaviour, IUpdatable
+    class InputMove : Component, IUpdatable
     {
 
         public float Speed;

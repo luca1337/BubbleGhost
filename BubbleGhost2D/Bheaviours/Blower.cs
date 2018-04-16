@@ -4,7 +4,7 @@ using OpenTK;
 
 namespace BehaviourEngine.Test.Bhaviours
 {
-    internal class Blower : Behaviour, IUpdatable
+    internal class Blower : Component, IUpdatable
     {
         public float Force;
         private readonly float range;

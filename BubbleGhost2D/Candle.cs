@@ -25,7 +25,7 @@ namespace BehaviourEngine.Test
         }
     }
 
-    public class SwitchCandle : Behaviour, IUpdatable
+    public class SwitchCandle : Component, IUpdatable
     {
         private float range;
         private GameObject target;

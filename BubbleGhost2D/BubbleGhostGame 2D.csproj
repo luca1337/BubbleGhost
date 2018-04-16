@@ -66,7 +66,7 @@
     </Reference>
     <Reference Include="BehaviourEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\BehaviourEngine.dll</HintPath>
+      <HintPath>D:\Sam\BehaviourEngine.dll</HintPath>
     </Reference>
     <Reference Include="NVorbis, Version=0.8.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NVorbis.0.8.5.0\lib\NVorbis.dll</HintPath>

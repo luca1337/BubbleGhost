@@ -53,7 +53,7 @@ namespace BehaviourEngine.Test
         }
     }
 
-    public class RollBack : Behaviour, IUpdatable
+    public class RollBack : Component, IUpdatable
     {
         private GameObject owner;
         public Box2D box;
@@ -78,7 +78,7 @@ namespace BehaviourEngine.Test
         }
     }
 
-    public class Lifes : Behaviour, IUpdatable
+    public class Lifes : Component, IUpdatable
     {        
         private GameObject target;
         public int LifesCount { get; private set; }

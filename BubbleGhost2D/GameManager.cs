@@ -10,7 +10,7 @@ using vec2 = OpenTK.Vector2;
 
 namespace BehaviourEngine.Test
 {
-    public sealed class GameManager : Behaviour, IUpdatable
+    public sealed class GameManager : Component, IUpdatable
     {
         #region FSM
         private StateGameSetup stateSetup;
