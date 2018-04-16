@@ -1,0 +1,51 @@
+﻿//THIS IS THE TODO LIST THAT SHOW WHAT ARE THE CHANGES THE GAME NEEDS TO TAKE IN ORDER TO WORKS GOOD.
+
+PLAYER RELATED ISSUES:
+1) Make player flip when changing direction ex(right or left) => just call sprite.Flipx();
+2) Fix player rotation when it's out of ball's radius, it needs to lerp to initial position,
+to rotate player, i'm using Sin and Cos to know the rotation based to target entity so that might
+be the problem.
+3) The ball texture has some problem so might need to change it or restore the old one. ( our choice )
+4) General code-refactoring
+
+GAME ADDONS:
+<<The code already support level managing but we have to make it works for other gameObjects like coolingfan, 
+candle etc.. so need to adapt it to tileMap, that might need a code fix>>
+
+1) Add more animated gameobjects in scene like candle, coolingfan which spread the blow toward a direction.
+2) Add more levels.
+3) Player need to be animated when it loses or he wins with it's own animation.
+3) Add a game-Logic :P
+
+GENERAL CHANGES:
+1) Add input library to replace standart api keyevents handler.
+
+#Happy coding ^^
+
+
+|==============================================================================================================|
+|================================POST HERE WHAT YOU HAVE DONE==================================================|
+|==============================================================================================================|
+
+FIXED:
+1) Player rotation when it's out of ball radius.
+2) player movement and general bugs
+3) Collisions were not working anymore 
+
+ADDED:
+1) Blowable class to make something blowable or not with inside 1 method (Blow())
+2) RigidBody class to make the entity controllable with pure ease between each gameObject.
+3) Transform behaviour and removed a big part of code that was not working properly.
+4) GUI before game starts
+5) Ghost is now animated also when it's idle and when blowing off.
+6) Animated Candles for some levels to look it fancy
+7) AudioManager with all background musics and intro music.
+8) Input library replacing with the standard one.
+
+
+UPDATED:
+1) Refactored code as well, every class has been rebuilt almost from scratch.
+2) Replaced some textures like bubble, wallbricks and ghost
+3) Decreased blow force for ghost
+4) Increased friction for ball
+5) Level manager now supports animated candles and different wallbricks
