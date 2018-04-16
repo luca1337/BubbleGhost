@@ -8,7 +8,7 @@ using Aiv.Fast2D;
 using Aiv.Fast2D.Utils.Input;
 using vec2 = OpenTK.Vector2;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     public sealed class GameManager : Component, IUpdatable
     {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     public class Map : GameObject
     {

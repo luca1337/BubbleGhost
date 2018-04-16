@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
 
-namespace BehaviourEngine.Test
+namespace BehaviourEngine
 {
     public class LightRadius
     {

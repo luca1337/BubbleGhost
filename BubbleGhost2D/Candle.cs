@@ -9,7 +9,7 @@ using BubbleGhostGame2D;
 using BehaviourEngine.Interfaces;
 using Aiv.Fast2D;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     public class Candle : GameObject
     {

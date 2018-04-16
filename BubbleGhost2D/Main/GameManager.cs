@@ -7,7 +7,7 @@ using Aiv.Fast2D;
 using BehaviourEngine.Test;
 using OpenTK;
 
-namespace BehaviourEngine
+namespace BubbleGhostGame2D
 {
     public sealed class GameManager : Behaviour, IUpdatable
     {

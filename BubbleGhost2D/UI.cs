@@ -7,7 +7,7 @@ using Aiv.Fast2D;
 using OpenTK;
 using BehaviourEngine.Renderer;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     public class UI : GameObject
     {

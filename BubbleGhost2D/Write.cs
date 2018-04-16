@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aiv.Fast2D;
-using OpenTK;
-using BehaviourEngine.Interfaces;
-using BehaviourEngine.Renderer;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     public class Write : Component, IUpdatable, IDrawable
     {

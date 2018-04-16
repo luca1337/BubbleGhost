@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     internal enum AnimType : byte
     {

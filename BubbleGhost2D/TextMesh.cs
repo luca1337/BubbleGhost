@@ -2,7 +2,7 @@
 using Aiv.Fast2D;
 using OpenTK;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     public class TextMesh : Mesh
     {

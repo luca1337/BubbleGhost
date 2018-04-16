@@ -62,52 +62,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behaviours\Blower.cs" />
-    <Compile Include="GameObjects\Bubble.cs" />
-    <Compile Include="GameObjects\Camera.cs" />
-    <Compile Include="GameObjects\Game.cs" />
+    <Compile Include="Components\Blowable.cs" />
+    <Compile Include="Components\Blower.cs" />
+    <Compile Include="Components\InputMove.cs" />
+    <Compile Include="Components\LightRadius.cs" />
+    <Compile Include="Components\Rotator.cs" />
+    <Compile Include="Components\SwitchAnimation.cs" />
+    <Compile Include="Bubble.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="Candle.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameManager.cs" />
+    <Compile Include="Prefabs\Bubble.cs" />
+    <Compile Include="Prefabs\Camera.cs" />
+    <Compile Include="Prefabs\Game.cs" />
+    <Compile Include="Ghost.cs" />
+    <Compile Include="LevelManager.cs" />
     <Compile Include="Main\GameManager.cs" />
-    <Compile Include="GameObjects\Ghost.cs" />
+    <Compile Include="Prefabs\Ghost.cs" />
     <Compile Include="Main\IState.cs" />
-    <Compile Include="Behaviours\LightRadius.cs" />
     <Compile Include="Main\Program.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Behaviours\Rotator.cs" />
-    <Compile Include="Behaviours\InputMove.cs" />
+    <Compile Include="Scene.cs" />
+    <Compile Include="TextMesh.cs" />
+    <Compile Include="UI.cs" />
+    <Compile Include="Write.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configs\App.config" />
+    <None Include="App.config" />
+    <None Include="Assets\Bg.dat" />
+    <None Include="Assets\brick.dat" />
+    <None Include="Assets\bubble2.dat" />
+    <None Include="Assets\BubblePopping.dat" />
+    <None Include="Assets\candle.dat" />
+    <None Include="Assets\candle_only_light.dat" />
+    <None Include="Assets\explosion.dat" />
+    <None Include="Assets\Flame00.dat" />
+    <None Include="Assets\Flame01.dat" />
+    <None Include="Assets\Flame02.dat" />
+    <None Include="Assets\Font.dat" />
+    <None Include="Assets\Ghost.dat" />
+    <None Include="Assets\GhostBlow.dat" />
+    <None Include="Assets\GhostLose.dat" />
+    <None Include="Assets\GhostWin.dat" />
+    <None Include="Assets\gui.dat" />
+    <None Include="Assets\start.dat" />
+    <None Include="Config\App.config" />
+    <None Include="Config\OpenTK.dll.config" />
+    <None Include="Config\packages.config" />
     <None Include="Levels\Level01.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Levels\Level02.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Configs\OpenTK.dll.config" />
-    <None Include="Configs\packages.config" />
+    <None Include="Sounds\Background.ogg" />
+    <None Include="Sounds\Hurt.ogg" />
+    <None Include="Sounds\Menu.ogg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Bubble.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Font.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Ghost.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\ghost2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Ghost2D.png" />
-    <Content Include="Assets\Wall.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\enemy.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="TODO.txt" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,7 +8,7 @@ using BehaviourEngine.Renderer;
 using OpenTK;
 using BubbleGhostGame2D;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     public class Bubble : GameObject
     {

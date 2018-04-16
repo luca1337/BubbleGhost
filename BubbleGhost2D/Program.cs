@@ -8,7 +8,7 @@ using Netbase.Shared.UI;
 using Aiv.Fast2D;
 using BehaviourEngine;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     internal class Program
     {

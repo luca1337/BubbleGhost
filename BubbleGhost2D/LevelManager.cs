@@ -8,7 +8,7 @@ using OpenTK;
 using Aiv.Fast2D;
 using BehaviourEngine.Test;
 
-namespace BehaviourEngine.Test
+namespace BubbleGhostGame2D
 {
     public enum RenderLayer
     {
