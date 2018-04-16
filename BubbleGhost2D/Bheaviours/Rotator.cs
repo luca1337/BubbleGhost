@@ -7,7 +7,7 @@ using BehaviourEngine.Interfaces;
 using BehaviourEngine.Renderer;
 using OpenTK;
 
-namespace BehaviourEngine.Test.Bhaviours
+namespace BubbleGhostGame2D
 {
     public class Rotator : Component, IUpdatable, IStartable
     {

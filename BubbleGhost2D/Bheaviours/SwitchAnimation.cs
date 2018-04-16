@@ -3,7 +3,7 @@ using OpenTK;
 using BehaviourEngine.Interfaces;
 using BehaviourEngine.Renderer;
 
-namespace BehaviourEngine.Test.Bhaviours
+namespace BubbleGhostGame2D
 {
     public class SwitchAnimation : Component, IUpdatable
     {

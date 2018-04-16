@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Aiv.Fast2D;
 using BehaviourEngine.Renderer;
 using OpenTK;
-using BehaviourEngine.Test.Bhaviours;
+using BubbleGhostGame2D;
 
 namespace BehaviourEngine.Test
 {

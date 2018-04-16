@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BehaviourEngine.Renderer;
 using OpenTK;
-using BehaviourEngine.Test.Bhaviours;
+using BubbleGhostGame2D;
 using BehaviourEngine.Interfaces;
 using Aiv.Fast2D;
 

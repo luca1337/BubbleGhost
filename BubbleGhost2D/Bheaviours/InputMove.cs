@@ -2,7 +2,7 @@
 using BehaviourEngine.Interfaces;
 using OpenTK;
 
-namespace BehaviourEngine.Test.Bhaviours
+namespace BubbleGhostGame2D
 {
     class InputMove : Component, IUpdatable
     {

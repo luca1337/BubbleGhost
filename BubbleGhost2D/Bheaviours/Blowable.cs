@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BehaviourEngine.Test.Bhaviours
+namespace BubbleGhostGame2D
 {
     class Blowable : Component, IStartable
     {
