@@ -10,7 +10,7 @@ using vec2 = OpenTK.Vector2;
 
 namespace BubbleGhostGame2D
 {
-    public sealed class GameManager : Component, IUpdatable
+    public sealed class GameManager : GameObject
     {
         #region FSM
         private StateGameSetup stateSetup;
@@ -90,7 +90,7 @@ namespace BubbleGhostGame2D
 
                 //AudioManager.PlayStream( AudioType.SOUND_BACKGROUND, Engine.SOUND_PATH + "/Menu.ogg" );
 
-              
+             
 
                 //Level Load
                 owner.currentLevel = new Level( Engine.LEVEL_PATH + "/Level00" + ".csv", "Base0", 0 );

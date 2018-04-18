@@ -10,23 +10,15 @@ using BehaviourEngine;
 
 namespace BubbleGhostGame2D
 {
-    public enum RenderLayer
-    {
-        None        = -1,
-        Gui         = 0,
-        Pawn        = 1,
-        Level       = 100,
-        Background  = 1000
-    }
     public class Level
     {
         private static Dictionary<string, Level> instances;
-        private List<int>             map;
+        private List<int>             currentMap;
         private int                   rows;
         private int                   columns;
         private int                   index;
-        private static GameObject     gameObj;
-
+        
+      
         static Level()
         {
             instances = new Dictionary<string, Level>();
@@ -34,7 +26,7 @@ namespace BubbleGhostGame2D
 
         public Level(string fileName, string levelName, int index)
         {
-            map        = new List<int>();
+            currentMap        = new List<int>();
             this.index = index;
             ReadFromFile(fileName);
             instances.Add(levelName, this);
@@ -57,19 +49,20 @@ namespace BubbleGhostGame2D
                     string currentVal = t.Trim();
                     bool success      = int.TryParse(currentVal, out value);
                     if (success)
-                        map.Add(value);
+                        currentMap.Add(value);
                 }
             }
         }
 
         private void LoadMap()
         {
-            gameObj = GameObject.Spawn( new Map( map, rows, columns, index ) );
+            GameObject.Spawn(new Map( currentMap, rows, columns, index ) );
         }
 
         public void NextLevel( bool next )
         {
-            Engine.Destroy(gameObj);
+            //TODO destroy previous map
+
             if (next)
                 index++;
             else

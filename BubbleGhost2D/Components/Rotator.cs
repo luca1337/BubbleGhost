@@ -11,22 +11,32 @@ namespace BubbleGhostGame2D
 {
     public class Rotator : Component, IUpdatable, IStartable
     {
+        public bool IsStarted { get; set; }
+
         private AnimationRenderer renderer;
         private GameObject target;
         private float range;
         private float t;
 
-        public Rotator(GameObject owner, GameObject target, float range)
+        public Rotator(GameObject target, float range)
         {
             this.target = target;
             this.range = range;
         }
 
-        public bool IsStarted { get; set; }
-
-        private static float Lerp(float firstFloat, float secondFloat, float t)
+        public void Update()
         {
-            return secondFloat * t + firstFloat * (1 - t);
+            Vector2 dist = (target.Transform.Position - Owner.Transform.Position);
+
+            if (dist.Length < range)
+            {
+                bool flip = renderer.Sprite.FlipX && renderer.Sprite.FlipY;
+                if (flip)
+                    renderer.SetFlip(false, false);
+                GetLerped(dist, Graphics.Instance.Window.deltaTime);
+            }
+            else
+                GetLerped(dist, Graphics.Instance.Window.deltaTime, true);
         }
 
         public void Start()
@@ -43,19 +53,11 @@ namespace BubbleGhostGame2D
                 t = 0f;
         }
 
-        void IUpdatable.Update()
+        private static float Lerp(float firstFloat, float secondFloat, float t)
         {
-            Vector2 dist = (target.Transform.Position - Owner.Transform.Position);
-
-            if (dist.Length < range)
-            {
-                bool flip = renderer.Sprite.FlipX && renderer.Sprite.FlipY;
-                if(flip)
-                    renderer.SetFlip(false, false);
-                GetLerped(dist, Graphics.Instance.Window.deltaTime);
-            }
-            else
-                GetLerped(dist, Graphics.Instance.Window.deltaTime , true);
+            return secondFloat * t + firstFloat * (1 - t);
         }
+
+       
     }
 }

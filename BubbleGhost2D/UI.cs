@@ -14,18 +14,16 @@ namespace BubbleGhostGame2D
         private readonly SpriteRenderer renderer;
         public Text text;
      
-        public UI( int RenderOffset, Vector2 drawPosition, int width, int height, string fileName ) : base ( RenderOffset )
+        public UI(string fileName) 
         {
-            renderer                          = AddComponent(new SpriteRenderer(this, width, height));
-            renderer.IsTile                   = false;
-            renderer.Owner.Transform.Position = drawPosition;
-            renderer.Texture                  = FlyWeight.Get(fileName);
+            renderer                          = AddComponent(new SpriteRenderer(FlyWeight.Get(fileName)));
+            renderer.RenderOffset             = (int)RenderLayer.Gui_00;
         }
 
-        public UI( string message, Texture spriteSheetTexture, Vector2 position )  //: base( ( int ) RenderLayer.Pawn )
+        public UI( string message, Texture spriteSheetTexture, Vector2 textPos)  
         {
-            text = new Text(message, spriteSheetTexture, position);
-            GameObject.Spawn(text);
+            text = new Text(message, spriteSheetTexture, textPos);
+            Spawn(text);
         }
     
 
@@ -33,7 +31,7 @@ namespace BubbleGhostGame2D
     public class Text : GameObject
     {
         private Write text;
-        public Text( string message, Texture spriteSheetTexture, Vector2 position ) : base( ( int ) RenderLayer.Pawn )
+        public Text( string message, Texture spriteSheetTexture, Vector2 position )
         {
             text = AddComponent(new Write(this, spriteSheetTexture,message, position));
         }

@@ -15,13 +15,10 @@ namespace BubbleGhostGame2D
         private AnimationRenderer renderer;
         private SwitchCandle animation;
 
-        public Candle(string fileName, Vector2 drawPosition, GameObject target ) : base( ( int )RenderLayer.Pawn, "Candles" )
+        public Candle()
         {
-            renderer = AddComponent(new AnimationRenderer(this, fileName, drawPosition, false,
-                true, 3, 32, 32, new[] { 1, 0, 1, 2, 0 }, .5f));
-
-            renderer.Owner.Transform.Position = drawPosition;
-            renderer.Pivot = new Vector2(renderer.Width / 2, renderer.Height / 2);
+            renderer              = AddComponent(new AnimationRenderer(FlyWeight.Get("Candle"), 32, 32, 3, new[] { 1, 0, 1, 2, 0 }, 0.5f, false,  true));
+            renderer.Sprite.pivot = new Vector2(renderer.Sprite.Width / 2, renderer.Sprite.Height / 2);
         }
     }
 
@@ -29,7 +26,7 @@ namespace BubbleGhostGame2D
     {
         private float range;
         private GameObject target;
-        public SwitchCandle(GameObject owner,GameObject target, float range) : base(owner)
+        public SwitchCandle(GameObject target, float range) 
         {
             this.range = range;
             this.target = target;
@@ -39,7 +36,7 @@ namespace BubbleGhostGame2D
         {
             if (Input.IsKeyPressed(KeyCode.Space))
             {
-                Owner.GetComponent<AnimationRenderer>().currentFrame = 3;
+                Owner.GetComponent<AnimationRenderer>().SetCurrentIndex(3);
                 Owner.GetComponent<AnimationRenderer>().Stop = true;
             }
 

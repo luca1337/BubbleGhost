@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aiv.Fast2D;
 using OpenTK;
+using BubbleGhostGame2D;
+using BehaviourEngine;
 
 namespace BubbleGhostGame2D
 {
@@ -16,140 +14,54 @@ namespace BubbleGhostGame2D
             Exploding
         }
 
-        private readonly Dictionary
-            <AnimType, AnimationRenderer>     bubbleRenderer;
-        private LightRadius                   radius;
-        private readonly BoxCollider          collider;
-        private static readonly int[]         iFrames = { 3, 5, 7 };
-        private readonly float                fTime;
-        private float                         fUpdate;
-        private float                         fMin;
-        private const float                   fMax    = 0.57f;
+        public bool Exploded { get; set; }
 
-        //FSM                                               
-        private IState                        currentState;
-        private StateExplode                  stateExplode;
-        private StateWait                     stateWait;
+        private Dictionary<AnimType, AnimationRenderer> bubbleRenderer;
+        private BoxCollider2D collider;
+        private int[] frames            = { 0, 1, 2, 1 };
+        private const float frameLenght = 0.2f;
 
-        public BoxCollider Collider => collider;
-
-        public Bubble(string fileName, Vector2 position)
+        public Bubble(string fileNameBubble, string fileNameExplosion, Vector2 position) : base("Bubble") // base( ( int )RenderLayer.Pawn, "Bubble" )
         {
-            #region Init
-            radius                            = AddBehaviour<LightRadius>(new LightRadius());
-            #endregion
-
+            Exploded       = false;
+            
             #region Renderer
-            bubbleRenderer = new Dictionary<AnimType, AnimationRenderer>
-            {
-                {
-                    AnimType.Normal,
-                    AddBehaviour<AnimationRenderer>(
-                        new AnimationRenderer(fileName, position, false, true, 3, 64, 50, new[] {0, 1, 0}, 0.5f))
-                },
-                {
-                    AnimType.Exploding,
-                    AddBehaviour<AnimationRenderer>(
-                        new AnimationRenderer(fileName, position, true, false, 3, 64, 60, iFrames, 0.5f))
-                }
-            };
-            bubbleRenderer.ToList().ForEach(x => { x.Value.Owner.Position = position; x.Value.Pivot = new Vector2(x.Value.Width / 2, x.Value.Height / 2);});
-            fTime = bubbleRenderer[AnimType.Exploding].LenghtFrames;
+            bubbleRenderer = new Dictionary<AnimType, AnimationRenderer>();
+            bubbleRenderer.Add(AnimType.Normal, AddComponent(new AnimationRenderer(FlyWeight.Get("Bubble"), 32, 32, 3, new[] { 0, 1, 2, 1 }, frameLenght, false, true)));
+            bubbleRenderer.Add(AnimType.Exploding, AddComponent(new AnimationRenderer(FlyWeight.Get("Explosion"), 32, 32, 3, frames, frameLenght, true, false)));
+            bubbleRenderer[AnimType.Normal].RenderOffset = (int)RenderLayer.Weapon;
+            bubbleRenderer[AnimType.Exploding].RenderOffset = (int)RenderLayer.Weapon;
             #endregion
 
-            #region Collider
-            collider                           = new BoxCollider(position, 1f, 1f, this);
-            collider.Pivot                     = collider.Center;
-            AddBehaviour<BoxCollider>(collider);
-            #endregion                         
-                                               
-            #region FSM                        
-            stateExplode                       = new StateExplode(this);
-            stateWait                          = new StateWait(this);
-            stateExplode.Next                  = stateWait;
-            stateWait.Next                     = stateExplode;
-            stateWait.OnStateEnter();          
-            currentState                       = stateWait;
+            Rigidbody2D r = this.AddComponent(new Rigidbody2D());
+            r.LinearFriction = 3f;
+            this.AddComponent(new Blowable());
+
+            collider = new BoxCollider2D(new Vector2(1f, 1f));
+            collider.TriggerEnter += OnTriggerEnter;
+            AddComponent(collider);
+
+            #region Explosion
+            //target.updateTime += Graphics.Instance.Window.deltaTime;
+            //target.SetAnimation(AnimType.Normal, true, false);
+            //CameraManager.Instance.Shake(1.9f, 0.2f);
+
+            //if (target.updateTime <= target.time)
+            //return this;
+
+            //target.min += Graphics.Instance.Window.deltaTime;
+            //target.SetAnimation(AnimType.Exploding, false, true);
+
+            //if (!(target.min >= max))
+            //return this;
             #endregion
+
         }
 
-        public void UpdateStates()
+        private void OnTriggerEnter(Collider2D other)
         {
-            if (bubbleRenderer[AnimType.Normal] == null || bubbleRenderer[AnimType.Exploding] == null) return;
-            //Update FSM current state.
-            currentState             = currentState.OnStateUpdate();
-            collider.Position        = bubbleRenderer[AnimType.Normal].Position;
-            if (!bubbleRenderer[AnimType.Normal].Owner.Active)
-                collider.Position = bubbleRenderer[AnimType.Exploding].Position;
-        }
-
-        private void SetAnimation(AnimType eType, bool update, bool render)
-        {
-            bubbleRenderer[eType].Stop = update;
-            bubbleRenderer[eType].Show = render;
-        }
-
-        private bool GetState()
-        {
-            return bubbleRenderer[AnimType.Exploding].Stop == false &&
-            bubbleRenderer[AnimType.Exploding].Show;
-        }
-
-        private class StateExplode : IState
-        {
-            public StateWait Next;
-            private readonly Bubble m_hTarget;
-            public StateExplode(Bubble hTarget)
-            {
-                m_hTarget = hTarget;
-            }
-            public void OnStateEnter()
-            {
-                OnStateUpdate();
-            }
-            public void OnStateExit()
-            {
-            }
-            public IState OnStateUpdate()
-            {
-                m_hTarget.fUpdate += Engine.DeltaTime;
-                m_hTarget.SetAnimation(AnimType.Normal, true, false);
-                CameraManager.Instance.Shake(0.3f, 0.2f);
-                if (m_hTarget.fUpdate - 0.1f >= m_hTarget.fTime) return this;
-                m_hTarget.fMin += Engine.DeltaTime;
-                m_hTarget.SetAnimation(AnimType.Exploding, false, true);
-                if (!(m_hTarget.fMin >= fMax)) return this;
-                Engine.Destroy(m_hTarget);
-                Next.OnStateEnter();
-                return Next;
-            }
-        }
-        private class StateWait : IState
-        {
-            public StateExplode Next;
-            private readonly Bubble m_hTarget;
-
-            public StateWait(Bubble hTarget)
-            {
-                m_hTarget = hTarget;
-            }
-
-            public void OnStateEnter()
-            {
-                OnStateUpdate();
-            }
-
-            public void OnStateExit()
-            {
-            }
-
-            public IState OnStateUpdate()
-            {
-                if (m_hTarget.GetState()) return this;
-                if (!Engine.ComputeIntersect(m_hTarget.collider)) return this;
-                Next.OnStateEnter();
-                return Next;
-            }
+            bubbleRenderer[AnimType.Normal].Show    = false;
+            bubbleRenderer[AnimType.Exploding].Show = true;
         }
     }
 }
