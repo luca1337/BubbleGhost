@@ -21,11 +21,12 @@ namespace BubbleGhostGame2D
         private int[] frames            = { 0, 1, 2, 1 };
         private const float frameLenght = 0.2f;
 
-        public Bubble(string fileNameBubble, string fileNameExplosion, Vector2 position) : base("Bubble") // base( ( int )RenderLayer.Pawn, "Bubble" )
+        public Bubble(string fileNameBubble, string fileNameExplosion) : base("Bubble") // base( ( int )RenderLayer.Pawn, "Bubble" )
         {
             Exploded       = false;
-            
+
             #region Renderer
+
             bubbleRenderer = new Dictionary<AnimType, AnimationRenderer>();
             bubbleRenderer.Add(AnimType.Normal, AddComponent(new AnimationRenderer(FlyWeight.Get("Bubble"), 32, 32, 3, new[] { 0, 1, 2, 1 }, frameLenght, false, true)));
             bubbleRenderer.Add(AnimType.Exploding, AddComponent(new AnimationRenderer(FlyWeight.Get("Explosion"), 32, 32, 3, frames, frameLenght, true, false)));

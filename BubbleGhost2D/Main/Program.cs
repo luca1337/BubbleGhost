@@ -13,11 +13,8 @@ namespace BubbleGhostGame2D
     {
         private static void Main(string[] args)
         {
-            //Init window
-            Engine.Init(Engine.FixedWidth, Engine.FixedHeight, "BubbleGhost");
-
-            //Run Game Engine
-            Engine.Run();
+            Game.Init();
+            Game.Run();
         }
     }
 }

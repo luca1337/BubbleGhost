@@ -33,6 +33,7 @@ namespace BubbleGhostGame2D
                 bool flip = renderer.Sprite.FlipX && renderer.Sprite.FlipY;
                 if (flip)
                     renderer.SetFlip(false, false);
+
                 GetLerped(dist, Graphics.Instance.Window.deltaTime);
             }
             else

@@ -17,38 +17,36 @@ namespace BubbleGhostGame2D
         private readonly AnimationRenderer renderer;
         private InputMove input;
         private RollBack rollBack;
-        private Lifes lifes;
+        // private Lifes lifes;
         private BoxCollider2D box;
 
-        public Ghost( string fileName, int life, Vector2 drawPosition, GameObject target, float range = 120 ) : base( ( int )RenderLayer.Pawn, "Ghost" )
+        public Ghost(int life, GameObject target, float range = 120)
         {
             //Animation render
-            renderer = AddComponent( new AnimationRenderer( this, fileName, drawPosition, false,
-                true, 4, 32, 32, new[ ] { 0, 1, 2, 3 }, 0.1f ) );
-
-            AddComponent( new SwitchAnimation( this, target, range,true ) );
-            renderer.Owner.Transform.Position = drawPosition;
-            renderer.Owner.Transform.Scale    = new Vector2( 1.2f, 1.2f );
-            renderer.Pivot                    = new Vector2(renderer.Width / 2, renderer.Height / 2);
+            renderer = AddComponent(new AnimationRenderer(FlyWeight.Get("Ghost"), 32, 32, 4, new[] { 0, 1, 2, 3 }, 0.1f, false, true));
+            renderer.RenderOffset = (int)RenderLayer.Player;
+            AddComponent(new SwitchAnimation( target, range, true));
+            renderer.Sprite.pivot = new Vector2(renderer.Sprite.Width / 2, renderer.Sprite.Height / 2);
 
             //Collider
-            box                               = new BoxCollider2D( this.Transform.Position, 32, 32, new Vector4(255, 0, 255, 255), this );
-            AddComponent( box );
+            box = new BoxCollider2D(Vector2.One);
+            
+            AddComponent(box);
 
             //Behaviours
-            AddComponent( new Rotator( this, target, range ) );
-            AddComponent( new Blower( this, target.GetComponent < Blowable >( ), range, 3 ) );
+            AddComponent(new Rotator( target, range));
+            AddComponent(new Blower( target.GetComponent<Blowable>(), range, 3));
 
             //Input
-            input                             = AddComponent( new InputMove( ) );
-            input.Speed                       = 90.0f;
+            input = AddComponent(new InputMove());
+            input.Speed = 90.0f;
 
             //Rollback
-            rollBack                          = AddComponent( new RollBack( this ) );
-            rollBack.box                      = this.box;
+            rollBack = AddComponent(new RollBack());
+            rollBack.box = this.box;
 
             //Lifes
-            lifes = AddComponent( new Lifes( life, target, this ) );
+           // lifes = AddComponent(new Lifes(life, target, this));
         }
 
         public int RenderOffset { get; set; }
@@ -61,26 +59,22 @@ namespace BubbleGhostGame2D
 
     public class RollBack : Component, IUpdatable
     {
-        private GameObject owner;
         public BoxCollider2D box;
 
-        public RollBack( GameObject owner ) : base( owner )
+
+        public void Update()
         {
-            this.owner = owner;
-        }
+            if (box == null || Owner == null) return;
+            Vector2 oldPos = box.internalTransform.Position;
 
-        public void Update( )
-        {
-            if ( box == null || owner == null ) return;
-            Vector2 oldPos = box.Position;
+            box.internalTransform.Position = Owner.Transform.Position;
 
-            box.Position   = owner.Transform.Position;
+            bool prev = true;
+           // bool prev = Engine.IsOutOfScreen(this.owner.Transform.Position);
 
-            bool prev      = Engine.IsOutOfScreen( this.owner.Transform.Position );
-
-            if ( !prev ) return;
-            owner.Transform.Position = oldPos;
-            box.Position             = oldPos;
+            if (!prev) return;
+            Owner.Transform.Position = oldPos;
+            box.internalTransform.Position = oldPos;
         }
     }
 

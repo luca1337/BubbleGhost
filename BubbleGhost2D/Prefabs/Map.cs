@@ -12,8 +12,8 @@ namespace BubbleGhostGame2D
 {
     public class Map : GameObject
     {
-        public Vector2 SpawnPointBubble => spawnPointBubble;
-        public Vector2 SpawnPointGhost => spawnPointGhost;
+        public static Vector2 SpawnPointBubble => spawnPointBubble;
+        public static Vector2 SpawnPointGhost => spawnPointGhost;
 
         private float halfBlockSize = 0.5f;
         private Candle candle;
@@ -21,8 +21,8 @@ namespace BubbleGhostGame2D
         private int[] mapCells;
         private int rows;
         private int columns;
-        private Vector2 spawnPointBubble;
-        private Vector2 spawnPointGhost;
+        private static Vector2 spawnPointBubble;
+        private static Vector2 spawnPointGhost;
 
         public Map(List<int> mapCells, int rows, int columns, int index) : base("Map")
         {

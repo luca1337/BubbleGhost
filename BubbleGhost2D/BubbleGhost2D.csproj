@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BehaviourEngine.Test</RootNamespace>
     <AssemblyName>BehaviourEngine.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,6 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BehaviourEngine\bin\Debug\aiv-fast2d-utils-texturehelper.dll</HintPath>
     </Reference>
+    <Reference Include="aiv-vorbis, Version=1.0.6195.38242, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="BehaviourEngine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BehaviourEngine\bin\Debug\BehaviourEngine.dll</HintPath>
@@ -75,23 +77,20 @@
     <Compile Include="Components\InputMove.cs" />
     <Compile Include="Components\Rotator.cs" />
     <Compile Include="Components\SwitchAnimation.cs" />
-    <Compile Include="Bubble.cs" />
-    <Compile Include="Candle.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameManager.cs" />
+    <Compile Include="FMSUpdater.cs" />
     <Compile Include="Prefabs\Bubble.cs" />
-    <Compile Include="Prefabs\Camera.cs" />
-    <Compile Include="Prefabs\Game.cs" />
-    <Compile Include="Ghost.cs" />
-    <Compile Include="LevelManager.cs" />
+    <Compile Include="Prefabs\Candle.cs" />
+    <Compile Include="Main\Game.cs" />
+    <Compile Include="Main\GameManager.cs" />
     <Compile Include="Prefabs\Ghost.cs" />
-    <Compile Include="Main\IState.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="LevelManager.cs" />
+    <Compile Include="Prefabs\Map.cs" />
+    <Compile Include="Main\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="TextMesh.cs" />
     <Compile Include="UI.cs" />
+    <Compile Include="Wall.cs" />
     <Compile Include="Write.cs" />
   </ItemGroup>
   <ItemGroup>
