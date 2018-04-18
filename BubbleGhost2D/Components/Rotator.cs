@@ -49,12 +49,13 @@ namespace BubbleGhostGame2D
 
             if (dist.Length < range)
             {
-                if(renderer.GetFlip())
+                bool flip = renderer.Sprite.FlipX && renderer.Sprite.FlipY;
+                if(flip)
                     renderer.SetFlip(false, false);
-                GetLerped(dist, Engine.DeltaTime);
+                GetLerped(dist, Graphics.Instance.Window.deltaTime);
             }
             else
-                GetLerped(dist, Engine.DeltaTime, true);
+                GetLerped(dist, Graphics.Instance.Window.deltaTime , true);
         }
     }
 }

@@ -8,12 +8,9 @@ namespace BubbleGhostGame2D
 {
     class InputMove : Component, IUpdatable
     {
-
         public float Speed;
 
-        public InputMove( ) 
-        {
-        }
+        //Maybe set owner
 
         public void Update()
         {

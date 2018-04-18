@@ -12,10 +12,10 @@ namespace BubbleGhostGame2D
         private readonly float range;
         public Blowable Target;
 
-        public Blower(GameObject owner, Blowable target, float range, float force = 1f) 
+        public Blower(Blowable target, float range, float force = 1f) 
         {
-            Target = target;
-            Force = force;
+            Target     = target;
+            Force      = force;
             this.range = range;
         }
 

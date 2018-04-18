@@ -11,23 +11,23 @@ namespace BubbleGhostGame2D
         private readonly float radius;
         private bool isGhost;
 
-        public SwitchAnimation(GameObject owner, GameObject target, float radius, bool isGhost) : base(owner)
+        public SwitchAnimation(GameObject target, float radius, bool isGhost)
         {
             this.isGhost = isGhost;
-            this.target  = target;
-            this.radius  = radius;
+            this.target = target;
+            this.radius = radius;
         }
 
         public void Update()
         {
-            if (Input.IsKeyPressed( KeyCode.Space ) )
+            if (Input.IsKeyPressed(KeyCode.Space))
             {
-                Owner.GetComponent < AnimationRenderer >( ).currentFrame = 3;
-                Owner.GetComponent < AnimationRenderer >( ).Stop = true;
+                Owner.GetComponent<AnimationRenderer>().SetCurrentIndex(3);
+                Owner.GetComponent<AnimationRenderer>().Stop = true;
             }
             else
             {
-                Owner.GetComponent < AnimationRenderer >( ).Stop = false;
+                Owner.GetComponent<AnimationRenderer>().Stop = false;
             }
 
 
@@ -37,15 +37,11 @@ namespace BubbleGhostGame2D
 
             if (isGhost)
             {
-                 if (Input.IsKeyPressed(KeyCode.D))
-                 {
-                     Owner.GetComponent<AnimationRenderer>().SetFlip(false, true);
-                 }
-                 
-                 if (Input.IsKeyPressed(KeyCode.A))
-                 {
-                     Owner.GetComponent<AnimationRenderer>().SetFlip(false, false);
-                 }
+                if (Input.IsKeyPressed(KeyCode.D))
+                    Owner.GetComponent<AnimationRenderer>().SetFlip(false, true);
+
+                if (Input.IsKeyPressed(KeyCode.A))
+                    Owner.GetComponent<AnimationRenderer>().SetFlip(false, false);
             }
         }
     }
